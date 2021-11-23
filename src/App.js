@@ -1,9 +1,9 @@
 import { createBrowserHistory } from "history";
-import { Route, Router, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import "./assets/style.css";
 
-import { MemberRoute } from "components/Routes/MemberRoute";
-import { GuestRoute } from "components/Routes/GuestRoute";
+// import MemberRoute from "components/Routes/MemberRoute";
+import GuestRoute from "components/Routes/GuestRoute";
 
 import Login from "pages/Login";
 import NotFound from "pages/404";

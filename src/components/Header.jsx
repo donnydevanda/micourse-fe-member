@@ -1,22 +1,20 @@
 import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { useRouter } from "next/router";
-import Logo from "../public/images/logo.svg";
+import { Link, withRouter } from "react-router-dom";
 
-export default function Header({ onLight }) {
+import Logo from "../assets/images/logo.svg";
+
+function Header({ onLight, location }) {
   const [ToggleMenu, setToggleMenu] = useState(false);
 
   const linkColor = onLight ? "text-gray-900" : "text-white";
 
-  const router = useRouter();
-
   const linkCTA =
-    router.pathname.indexOf("/login") > -1
+    location.pathname.indexOf("/login") > -1
       ? `${process.env.NEXT_PUBLIC_MEMBERPAGE_URL}/register`
       : `${process.env.NEXT_PUBLIC_MEMBERPAGE_URL}/login`;
 
-  const textCTA = router.pathname.indexOf("/login") > -1 ? "Register" : "Login";
+  const textCTA =
+    location.pathname.indexOf("/login") > -1 ? "Register" : "Login";
 
   return (
     <header
@@ -26,7 +24,7 @@ export default function Header({ onLight }) {
       ].join(" ")}
     >
       <div style={{ zIndex: 50 }}>
-        <Image src={Logo} height="54" width="54" alt="Micourse Logo" />
+        <img src={Logo} alt="Micourse Logo" />
       </div>
 
       <div className="flex md:hidden px-4">
@@ -111,3 +109,5 @@ export default function Header({ onLight }) {
     </header>
   );
 }
+
+export default withRouter(Header);
