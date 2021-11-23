@@ -1,3 +1,224 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Component - Header */
+.toggle {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  z-index: 9999;
+}
+
+.toggle:focus {
+  outline: none;
+}
+
+.toggle:before,
+.toggle:after {
+  @apply right-0 absolute bg-gray-200 transition-all duration-200;
+  content: "";
+  height: 3px;
+  transform-origin: center;
+}
+
+.toggle:before {
+  top: 26%;
+  width: 20px;
+}
+
+.toggle:after {
+  top: 58%;
+  width: 12px;
+}
+
+.toggle.active:before,
+.toggle.active:after {
+  width: 20px;
+  top: 50%;
+}
+
+.toggle.active:before {
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.toggle.active:after {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+/* Common - Link Wrapped */
+.link-wrapped::before {
+  @apply cursor-pointer z-10 inset-0 absolute;
+  content: "";
+}
+
+/* Common - Card */
+.card {
+  @apply border-gray-200 h-full p-6 border relative;
+}
+
+.card:hover {
+  @apply bg-indigo-700;
+  box-shadow: 0px 6px 15px rgba(77, 85, 188, 0.4);
+}
+
+.card .card-meta h4 {
+  @apply text-gray-900;
+}
+
+.card:hover .card-meta h4 {
+  @apply text-white;
+}
+
+.card:hover .card-meta h5 {
+  @apply text-white;
+}
+
+/* Component - Modal */
+.modal-close {
+  @apply absolute right-0 cursor-pointer inline-block;
+  width: 50px;
+  height: 50px;
+}
+
+.modal-close::before,
+.modal-close::after {
+  @apply absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 2px;
+  content: "";
+  background-color: white;
+  margin-left: -25%;
+}
+
+.modal-close::before {
+  transform: rotate(45deg);
+}
+
+.modal-close::after {
+  transform: rotate(-45deg);
+}
+
+.overlay {
+  @apply transition-all duration-500;
+}
+
+.overlay-enter {
+  opacity: 0;
+}
+
+.overlay-enter-active {
+  opacity: 1;
+}
+
+.overlay-exit {
+  opacity: 1;
+}
+
+.overlay-exit-active {
+  opacity: 0;
+}
+
+.overlay-enter-done {
+  opacity: 1;
+}
+
+/* Component - Accordion */
+.accordion-item {
+  @apply transition-all duration-300;
+}
+
+.accordion-item-enter {
+  opacity: 0;
+}
+
+.accordion-item-enter active {
+  opacity: 1;
+}
+
+.accordion-item-exit {
+  opacity: 1;
+}
+
+.accordion-item-exit active {
+  opacity: 0;
+}
+
+/* Component - Stars */
+.stars {
+  @apply relative inline-flex;
+  min-width: 200px;
+}
+
+.stars .star {
+  @apply absolute;
+}
+
+.stars .star:not(.placeholder) {
+  z-index: 2;
+  @apply bg-yellow-400;
+}
+
+.stars .star.placeholder {
+  z-index: 1;
+  @apply bg-gray-200;
+}
+
+/* Index - Header Clipping */
+.header-clipping,
+.header-clipping .container {
+  @apply relative;
+}
+
+.header-clipping::before {
+  @apply w-full bg-indigo-800 inset-0 absolute;
+  content: "";
+  height: 648px;
+  clip-path: polygon(0 0, 100% 0, 100% 86%, 0% 100%);
+}
+
+/* Detail Page - Video Wrapper */
+.video-wrapper {
+  @apply absolute inset-0 z-0;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+
+.video-wrapper iframe {
+  @apply absolute top-0 left-0 w-full h-full;
+}
+
+/* Detail Page - Meta Price */
+.meta-price {
+  @apply bottom-0 opacity-100 fixed;
+  transition: all ease-in-out 0.45s;
+  box-shadow: 0px -8px 15px rgba(0, 0, 0, 0.05);
+}
+
+.meta-price-enter {
+  opacity: 0;
+  bottom: -100%;
+}
+
+.meta-price-enter-active {
+  opacity: 1;
+  bottom: 0;
+}
+
+.meta-price-exit {
+  opacity: 1;
+  bottom: 0;
+}
+
+.meta-price-exit-active {
+  opacity: 0;
+  bottom: -100%;
+}
+
+.meta-price-done {
+  @apply bottom-0 opacity-100 fixed;
+}
