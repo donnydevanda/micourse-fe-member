@@ -12,6 +12,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
+    "watch:css": "postcss --watch tailwindcss/style.css -o src/assets/style.css",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -34,5 +35,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.8.8",
+    "postcss": "^7.0.39",
+    "postcss-cli": "^9.0.2",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   }
 }
