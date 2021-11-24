@@ -6,6 +6,7 @@ import MemberRoute from "components/Routes/MemberRoute";
 import GuestRoute from "components/Routes/GuestRoute";
 
 import Login from "pages/Login";
+import Register from "pages/Register";
 import MyClass from "pages/MyClass";
 import Unauthenticated from "pages/401";
 import NotFound from "pages/404";
@@ -18,6 +19,7 @@ function App() {
       <Router history={history}>
         <Switch>
           <GuestRoute path="/login" component={Login} />
+          <GuestRoute path="/register" component={Register} />
           <GuestRoute path="/private" component={Unauthenticated} />
           <MemberRoute exact path="/" component={MyClass} />
           <Route path="*" component={NotFound} />
