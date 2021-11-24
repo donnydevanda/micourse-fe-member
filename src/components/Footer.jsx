@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import FormEmail from "./FormEmail";
+import InputEmail from "./Form/InputEmail";
 
 export default function Footer() {
   return (
@@ -93,7 +93,7 @@ export default function Footer() {
           <p className="my-2 text-gray-400">
             Submit your email to get special offers
           </p>
-          <FormEmail />
+          <InputEmail />
         </div>
       </div>
       <div className="border-t pt-10 mt-8 -mb-2 border-gray-800 text-center text-lg">

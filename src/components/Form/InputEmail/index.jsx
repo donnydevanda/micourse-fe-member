@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function FormEmail() {
+export default function InputEmail() {
   const [state, setState] = useState(() => "");
 
   function submit() {

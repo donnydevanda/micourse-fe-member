@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-
 import Header from "components/Header";
 import LoginForm from "components/LoginForm";
 import Footer from "components/Footer";
@@ -12,13 +11,13 @@ export default function Login() {
   return (
     <>
       <section className="container mx-auto pt-10">
-        <Header onLight></Header>
+        <Header onLight />
       </section>
       <section className="container mx-auto pt-10">
-        <LoginForm></LoginForm>
+        <LoginForm />
       </section>
       <section className="mt-24 bg-indigo-900">
-        <Footer></Footer>
+        <Footer />
       </section>
     </>
   );
