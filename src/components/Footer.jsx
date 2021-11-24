@@ -9,31 +9,35 @@ export default function Footer() {
           <h6 className="text-white">Company</h6>
           <ul className="mt-4">
             <li className="mt-2">
-              <Link href="#">
-                <a className="text-gray-400 hover:text-indigo-500 hover:underline">
-                  API References
-                </a>
+              <Link
+                to="#"
+                className="text-gray-400 hover:text-indigo-500 hover:underline"
+              >
+                API References
               </Link>
             </li>
             <li className="mt-2">
-              <Link href="#">
-                <a className="text-gray-400 hover:text-indigo-500 hover:underline">
-                  Career & Support
-                </a>
+              <Link
+                to="#"
+                className="text-gray-400 hover:text-indigo-500 hover:underline"
+              >
+                Career & Support
               </Link>
             </li>
             <li className="mt-2">
-              <Link href="#">
-                <a className="text-gray-400 hover:text-indigo-500 hover:underline">
-                  Story
-                </a>
+              <Link
+                to="#"
+                className="text-gray-400 hover:text-indigo-500 hover:underline"
+              >
+                Story
               </Link>
             </li>
             <li className="mt-2">
-              <Link href="#">
-                <a className="text-gray-400 hover:text-indigo-500 hover:underline">
-                  Blog
-                </a>
+              <Link
+                to="#"
+                className="text-gray-400 hover:text-indigo-500 hover:underline"
+              >
+                Blog
               </Link>
             </li>
           </ul>
@@ -42,31 +46,35 @@ export default function Footer() {
           <h6 className="text-white">Student</h6>
           <ul className="mt-4">
             <li className="mt-2">
-              <Link href="#">
-                <a className="text-gray-400 hover:text-indigo-500 hover:underline">
-                  Scholarship
-                </a>
+              <Link
+                to="#"
+                className="text-gray-400 hover:text-indigo-500 hover:underline"
+              >
+                Scholarship
               </Link>
             </li>
             <li className="mt-2">
-              <Link href="#">
-                <a className="text-gray-400 hover:text-indigo-500 hover:underline">
-                  Skills Path
-                </a>
+              <Link
+                to="#"
+                className="text-gray-400 hover:text-indigo-500 hover:underline"
+              >
+                Skills Path
               </Link>
             </li>
             <li className="mt-2">
-              <Link href="#">
-                <a className="text-gray-400 hover:text-indigo-500 hover:underline">
-                  Features
-                </a>
+              <Link
+                to="#"
+                className="text-gray-400 hover:text-indigo-500 hover:underline"
+              >
+                Features
               </Link>
             </li>
             <li className="mt-2">
-              <Link href="#">
-                <a className="text-gray-400 hover:text-indigo-500 hover:underline">
-                  Refund Policy
-                </a>
+              <Link
+                to="#"
+                className="text-gray-400 hover:text-indigo-500 hover:underline"
+              >
+                Refund Policy
               </Link>
             </li>
           </ul>

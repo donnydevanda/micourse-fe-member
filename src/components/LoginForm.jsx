@@ -1,12 +1,56 @@
 import { useState } from "react";
-// import imgHero from "../../public/assets/images/hero-login.jpg";
+import { withRouter } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import users from "api/users";
+import { setAuthorizationHeader } from "configs/axios";
+import { populateProfile } from "store/actions/users";
 
-export default function LoginForm() {
+function LoginForm({ history }) {
+  const dispatch = useDispatch();
+
   const [Email, setEmail] = useState(() => "");
   const [Password, setPassword] = useState(() => "");
 
-  function submit(e) {
+  async function submit(e) {
     e.preventDefault();
+    users
+      .login({ email: Email, password: Password })
+      .then((res) => {
+        setAuthorizationHeader(res.data.token);
+        users.details().then((detail) => {
+          dispatch(populateProfile(detail.data));
+          const production =
+            process.env.REACT_APP_FRONTPAGE_URL ===
+            "https://micourse.vercel.app"
+              ? "Domain = https://micourse.vercel.app"
+              : "";
+
+          localStorage.setItem(
+            "MICOURSE:token",
+            JSON.stringify({
+              ...res.data,
+              email: Email,
+            })
+          );
+
+          const redirect = localStorage.getItem("MICOURSE:redirect");
+          const userCookie = {
+            name: detail.data.name,
+            thumbnail: detail.data.avatar,
+          };
+
+          const expires = new Date(
+            new Date().getTime() + 7 * 24 * 60 * 60 * 1000
+          );
+
+          document.cookie = `MICOURSE:user=${JSON.stringify(
+            userCookie
+          )}; expires=${expires.toUTCString()}; path:/; ${production}`;
+
+          history.push(redirect || "/");
+        });
+      })
+      .catch((err) => {});
   }
 
   return (
@@ -45,7 +89,7 @@ export default function LoginForm() {
             className="bg-yellow-600 hover:bg-yellow-500 text-white transition-all duration-200 
           focus:outline-none shadow-inner text-whitepx-6 py-3 mt-4 w-full"
           >
-            Register
+            Login
           </button>
         </form>
       </div>
@@ -72,3 +116,5 @@ export default function LoginForm() {
     </div>
   );
 }
+
+export default withRouter(LoginForm);

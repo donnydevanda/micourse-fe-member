@@ -2,10 +2,12 @@ import { createBrowserHistory } from "history";
 import { Router, Route, Switch } from "react-router-dom";
 import "./assets/style.css";
 
-// import MemberRoute from "components/Routes/MemberRoute";
+import MemberRoute from "components/Routes/MemberRoute";
 import GuestRoute from "components/Routes/GuestRoute";
 
 import Login from "pages/Login";
+import MyClass from "pages/MyClass";
+import Unauthenticated from "pages/401";
 import NotFound from "pages/404";
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
       <Router history={history}>
         <Switch>
           <GuestRoute path="/login" component={Login} />
+          <GuestRoute path="/private" component={Unauthenticated} />
+          <MemberRoute exact path="/" component={MyClass} />
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>

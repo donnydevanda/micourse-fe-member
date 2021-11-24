@@ -42,56 +42,46 @@ function Header({ onLight, location }) {
       >
         <li className="my-4 md:my-0">
           <Link
-            href="/"
+            to="/"
             className={[
               linkColor,
               "text-white hover:text-blue-500 text-lg px-6 py-3",
             ].join(" ")}
           >
-            <a
-              className={[
-                linkColor,
-                "text-white hover:text-blue-500 text-lg px-6 py-3",
-              ].join(" ")}
-            >
-              Home
-            </a>
+            Home
           </Link>
         </li>
         <li className="my-4 md:my-0">
-          <Link href="/courses">
-            <a
-              className={[
-                linkColor,
-                "text-white hover:text-blue-500 text-lg px-6 py-3",
-              ].join(" ")}
-            >
-              Explore
-            </a>
+          <Link
+            to="/courses"
+            className={[
+              linkColor,
+              "text-white hover:text-blue-500 text-lg px-6 py-3",
+            ].join(" ")}
+          >
+            Explore
           </Link>
         </li>
         <li className="my-4 md:my-0">
-          <Link href="/">
-            <a
-              className={[
-                linkColor,
-                "text-white hover:text-blue-500 text-lg px-6 py-3",
-              ].join(" ")}
-            >
-              Features
-            </a>
+          <Link
+            to="/"
+            className={[
+              linkColor,
+              "text-white hover:text-blue-500 text-lg px-6 py-3",
+            ].join(" ")}
+          >
+            Features
           </Link>
         </li>
         <li className="my-4 md:my-0">
-          <Link href="/">
-            <a
-              className={[
-                linkColor,
-                "text-white hover:text-blue-500 text-lg px-6 py-3",
-              ].join(" ")}
-            >
-              Blog
-            </a>
+          <Link
+            to="/"
+            className={[
+              linkColor,
+              "text-white hover:text-blue-500 text-lg px-6 py-3",
+            ].join(" ")}
+          >
+            Blog
           </Link>
         </li>
         <li className="mt-8 md:mt-0">
