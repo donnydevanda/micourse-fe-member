@@ -1,5 +1,8 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch } from "react-router-dom";
+
 import "./assets/style.css";
 
 import MemberRoute from "components/Routes/MemberRoute";
@@ -11,8 +14,26 @@ import MyClass from "pages/MyClass";
 import Unauthenticated from "pages/401";
 import NotFound from "pages/404";
 
+import { populateProfile } from "store/actions/users";
+import { setAuthorizationHeader } from "configs/axios";
+
+import UserAPI from "api/users";
+
 function App() {
   const history = createBrowserHistory({ basename: process.env.PUBLIC_URL });
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    let session = null;
+    if (localStorage.getItem("MICOURSE:token")) {
+      session = JSON.parse(localStorage.getItem("MICOURSE:token"));
+      setAuthorizationHeader(session.token);
+
+      UserAPI.details().then((details) => {
+        dispatch(populateProfile(details.data));
+      });
+    }
+  }, [dispatch]);
 
   return (
     <>
