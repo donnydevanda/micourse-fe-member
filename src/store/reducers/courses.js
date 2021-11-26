@@ -23,7 +23,20 @@ export default function courses(state = initialState, action) {
     case FETCH_COURSES:
       return {
         ...state,
-        data: action.payload,
+        data:
+          action?.payload?.reduce((acc, item) => {
+            acc[item.course_id] = item;
+            return acc;
+          }, {}) ?? {},
+        total: action?.payload?.length ?? 0,
+        status: "ok",
+      };
+
+    case MESSAGE_COURSES:
+      return {
+        ...state,
+        message: action.payload,
+        status: "error",
       };
 
     default:

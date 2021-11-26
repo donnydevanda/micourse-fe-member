@@ -41,7 +41,7 @@ export default function MyClass() {
     window.scroll(0, 0);
     dispatch(statusCourses("loading"));
     CourseAPI.mine()
-      .then((res) => dispatch(fetchCourses(res)))
+      .then((res) => dispatch(fetchCourses(res.data)))
       .catch((err) => {
         dispatch(messageCourses(err?.response?.data?.message));
       });

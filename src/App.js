@@ -11,13 +11,14 @@ import GuestRoute from "components/Routes/GuestRoute";
 import Login from "pages/Login";
 import Register from "pages/Register";
 import MyClass from "pages/MyClass";
+import Joined from "pages/Joined";
 import Unauthenticated from "pages/401";
 import NotFound from "pages/404";
 
 import { populateProfile } from "store/actions/users";
 import { setAuthorizationHeader } from "configs/axios";
 
-import UserAPI from "api/users";
+import UsersAPI from "api/users";
 
 function App() {
   const history = createBrowserHistory({ basename: process.env.PUBLIC_URL });
@@ -29,7 +30,7 @@ function App() {
       session = JSON.parse(localStorage.getItem("MICOURSE:token"));
       setAuthorizationHeader(session.token);
 
-      UserAPI.details().then((details) => {
+      UsersAPI.details().then((details) => {
         dispatch(populateProfile(details.data));
       });
     }
@@ -43,6 +44,7 @@ function App() {
           <GuestRoute path="/register" component={Register} />
           <GuestRoute path="/private" component={Unauthenticated} />
           <MemberRoute exact path="/" component={MyClass} />
+          <MemberRoute exact path="/joined/:class" component={Joined} />
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>
