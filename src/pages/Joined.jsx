@@ -33,7 +33,7 @@ export default function Joined({ history, match }) {
   if (state.isError) return <ServerError></ServerError>;
 
   return (
-    <section className="h-screen flex flex-col items-center mt-24">
+    <section className="h-screen flex flex-col items-center pt-48">
       <img src="/images/illustration-joined.jpg" alt="Success Join" />
       <h1 className="text-3xl text-gray-900 mt-12">Where Are We!?</h1>
       <p className="text-lg text-gray-600 mt-4 mb-8 lg:w-3/12 xl:w-2/12 mx-auto text-center">

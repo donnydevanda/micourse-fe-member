@@ -28,7 +28,11 @@ function Sidebar({ match, history }) {
         <div className="flex flex-col text-center mt-8">
           <div className="border border-indigo-500 mx-auto p-2 inline-flex rounded-full overflow-hidden mb-3">
             {users?.avatar ? (
-              <img src={users?.avatar} alt={users?.name} />
+              <img
+                src={users?.avatar}
+                alt={users?.name}
+                style={{ width: 90, height: 90 }}
+              />
             ) : (
               <IconAvatar
                 className="fill-indigo-500"

@@ -4,7 +4,7 @@ import { ReactComponent as IconPlay } from "assets/images/ic-play.svg";
 export default function ListClassItem({ data }) {
   return (
     <div className="w-1/4 px-4">
-      <div className="item">
+      <div className="item relative">
         <figure className="item-image">
           <IconPlay />
           <img src={data?.thumbnail} alt={data?.name} />
