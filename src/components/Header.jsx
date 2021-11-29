@@ -1,16 +1,12 @@
 import { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
-
 import Logo from "../assets/images/logo.svg";
 
 function Header({ onLight, location }) {
   const [ToggleMenu, setToggleMenu] = useState(false);
-
   const linkColor = onLight ? "text-gray-900" : "text-white";
-
   const linkCTA =
     location.pathname.indexOf("/login") > -1 ? `/register` : `/login`;
-
   const textCTA =
     location.pathname.indexOf("/login") > -1 ? "Register" : "Login";
 
@@ -39,54 +35,53 @@ function Header({ onLight, location }) {
         ].join(" ")}
       >
         <li className="my-4 md:my-0">
-          <Link
-            to="/"
+          <a
+            href={`${process.env.REACT_APP_FRONTPAGE_URL}/`}
             className={[
               linkColor,
               "text-white hover:text-blue-500 text-lg px-6 py-3",
             ].join(" ")}
           >
             Home
-          </Link>
+          </a>
         </li>
         <li className="my-4 md:my-0">
-          <Link
-            to="/courses"
+          <a
+            href={`${process.env.REACT_APP_FRONTPAGE_URL}/courses`}
             className={[
               linkColor,
               "text-white hover:text-blue-500 text-lg px-6 py-3",
             ].join(" ")}
           >
             Explore
-          </Link>
+          </a>
         </li>
         <li className="my-4 md:my-0">
-          <Link
-            to="/"
+          <a
+            href={`${process.env.REACT_APP_FRONTPAGE_URL}/`}
             className={[
               linkColor,
               "text-white hover:text-blue-500 text-lg px-6 py-3",
             ].join(" ")}
           >
             Features
-          </Link>
+          </a>
         </li>
         <li className="my-4 md:my-0">
-          <Link
-            to="/"
+          <a
+            href={`${process.env.REACT_APP_FRONTPAGE_URL}/`}
             className={[
               linkColor,
               "text-white hover:text-blue-500 text-lg px-6 py-3",
             ].join(" ")}
           >
             Blog
-          </Link>
+          </a>
         </li>
         <li className="mt-8 md:mt-0">
           <Link
             to={linkCTA}
-            className="bg-indigo-700 hover:bg-indigo-900 transition-all duration-200 text-white 
-            hover:text-blue-500 text-lg px-6 py-3 ml-6"
+            className="bg-indigo-700 hover:bg-indigo-900 text-white text-lg transition-all duration-200 px-6 py-3 ml-6"
           >
             {textCTA}
           </Link>

@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import users from "../../api/users";
+import UserAPI from "../../api/user";
 
 import axios, { setAuthorizationHeader } from "./index";
 
@@ -15,30 +15,28 @@ export default function errorHandler(error) {
         const session = localStorage["MICOURSE:token"]
           ? JSON.parse(localStorage["MICOURSE:token"])
           : null;
-        return users
-          .refresh({
-            refresh_token: session.refresh_token,
-            email: session.email,
-          })
-          .then((res) => {
-            if (res.data) {
-              setAuthorizationHeader(res.data.token);
-              localStorage.setItem(
-                "MICOURSE:token",
-                JSON.stringify({
-                  ...session,
-                  token: res.data.token,
-                })
-              );
+        return UserAPI.refresh({
+          refresh_token: session.refresh_token,
+          email: session.email,
+        }).then((res) => {
+          if (res.data) {
+            setAuthorizationHeader(res.data.token);
+            localStorage.setItem(
+              "MICOURSE:token",
+              JSON.stringify({
+                ...session,
+                token: res.data.token,
+              })
+            );
 
-              originalRequest.headers.authorization = res.data.token;
+            originalRequest.headers.authorization = res.data.token;
 
-              return axios(originalRequest);
-            } else {
-              window.location.href = "/login";
-              localStorage.removeItem("MICOURSE:token");
-            }
-          });
+            return axios(originalRequest);
+          } else {
+            window.location.href = "/login";
+            localStorage.removeItem("MICOURSE:token");
+          }
+        });
       } else message = error.response.data.message;
 
       if (typeof message === "string") toast.error(message);

@@ -3,10 +3,10 @@ import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { populateProfile } from "../store/actions/users";
 import { setAuthorizationHeader } from "../configs/axios";
-import users from "../api/users";
+import UserAPI from "../api/user";
 import Input from "./Form/Input";
-import HeroImage from "./HeroImage";
 import Button from "./Form/Button";
+import HeroImage from "./HeroImage";
 
 function LoginForm({ history }) {
   const dispatch = useDispatch();
@@ -16,11 +16,10 @@ function LoginForm({ history }) {
 
   async function submit(e) {
     e.preventDefault();
-    users
-      .login({ email: Email, password: Password })
+    UserAPI.login({ email: Email, password: Password })
       .then((res) => {
         setAuthorizationHeader(res.data.token);
-        users.details().then((detail) => {
+        UserAPI.details().then((detail) => {
           dispatch(populateProfile(detail.data));
           const production =
             process.env.REACT_APP_FRONTPAGE_URL ===

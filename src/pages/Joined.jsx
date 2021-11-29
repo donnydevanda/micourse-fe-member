@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import CoursesAPI from "../api/courses";
+import CoursesAPI from "../api/course";
 import ServerError from "./500";
 import Loading from "../components/Loading";
 

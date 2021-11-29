@@ -2,16 +2,16 @@ import { useState, useRef } from "react";
 import { withRouter } from "react-router";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { populateProfile } from "../store/actions/users";
+import useForm from "../helpers/hooks/useForm";
+import fieldErrors from "../helpers/fieldErrors";
+import UserAPI from "../api/user";
+import MediaAPI from "../api/media";
 import Select from "./Form/Select";
 import Input from "./Form/Input";
 import Button from "./Form/Button";
-import useForm from "../helpers/hooks/useForm";
-import userAPI from "../api/users";
-import mediaAPI from "../api/media";
-import { populateProfile } from "../store/actions/users";
 import image2base64 from "../utils/image2base64";
 import { ReactComponent as IconUser } from "../assets/images/ic-avatar.svg";
-import fieldErrors from "../helpers/fieldErrors";
 
 function SettingForm({ details }) {
   const dispatch = useDispatch();
@@ -51,10 +51,10 @@ function SettingForm({ details }) {
     if (payload.profession === "others")
       payload.profession = state.otherProfession;
     if (state.avatar.indexOf("base64") > 1) {
-      const avatar = mediaAPI.upload(state.avatar);
+      const avatar = MediaAPI.upload(state.avatar);
       payload.avatar = await avatar.data.image;
     }
-    userAPI.update(payload).then((res) => {
+    UserAPI.update(payload).then((res) => {
       toast.success("Profile Updated");
       setState({
         ...state,

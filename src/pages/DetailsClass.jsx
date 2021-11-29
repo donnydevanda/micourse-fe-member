@@ -9,19 +9,18 @@ import {
 import SidebarClass from "../components/SidebarClass";
 import Loading from "../components/Loading";
 import Centered from "../components/Centered";
-import courses from "../api/courses";
+import CourseAPI from "../api/course";
 
 export default function DetailsClass({ match, history }) {
   const dispatch = useDispatch();
 
-  const COURSES = useSelector((state) => state.courses);
+  const COURSES = useSelector((state) => state.CourseAPI);
 
   useEffect(() => {
     window.scroll(0, 0);
 
     dispatch(statusCourses("loading"));
-    courses
-      .details(match.params.class)
+    CourseAPI.details(match.params.class)
       .then((res) => {
         if (res.chapters.length === 0)
           throw new Error("Class might be not ready yet");

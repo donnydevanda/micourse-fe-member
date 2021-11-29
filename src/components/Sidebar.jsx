@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import userAPI from "../api/users";
+import userAPI from "../api/user";
 
 import { ReactComponent as DefaultUser } from "../assets/images/ic-avatar.svg";
 
@@ -11,8 +11,8 @@ function Sidebar({ match, history }) {
 
   const getNavLinkClass = (path) => {
     return match.path === path
-      ? "active text-white bg-indigo-900"
-      : "text-indigo-500";
+      ? "active text-white bg-indigo-700"
+      : "text-indigo-300";
   };
   const USERS = useSelector((state) => state.userAPI);
 
@@ -47,7 +47,7 @@ function Sidebar({ match, history }) {
           ></div>
         )}
         <div
-          className="max-h-screen h-screen fixed bg-indig-900 flex flex-col content-between z-50"
+          className="max-h-screen h-screen fixed bg-indigo-900 flex flex-col content-between z-50"
           style={{ width: 280 }}
         >
           <div className="flex flex-col text-center mt-8">
@@ -66,7 +66,7 @@ function Sidebar({ match, history }) {
             </div>
 
             <h6 className="text-white text-xl">{USERS?.name ?? "Username"}</h6>
-            <span className="text-indigo-500 text-sm">
+            <span className="text-indigo-300 text-sm">
               {USERS?.profession ?? "Profession"}
             </span>
           </div>
@@ -88,7 +88,7 @@ function Sidebar({ match, history }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={[
-                  "nav-link relative flex items-center py-3 px-5 transition-all duration-200 hover:text-white active:text-white focus:outline-none w-full text-left text-indigo-500",
+                  "nav-link relative flex items-center py-3 px-5 transition-all duration-200 hover:text-white active:text-white focus:outline-none w-full text-left text-indigo-300",
                 ].join(" ")}
                 href={`${process.env.REACT_APP_FRONTPAGE_URL}/courses`}
               >
@@ -125,7 +125,7 @@ function Sidebar({ match, history }) {
             <li>
               <button
                 className={[
-                  "nav-link relative text-indigo-500 flex items-center py-3 px-5 transition-all duration-200 hover:text-white active:text-white focus:outline-none w-full text-left",
+                  "nav-link relative text-indigo-300 flex items-center py-3 px-5 transition-all duration-200 hover:text-white active:text-white focus:outline-none w-full text-left",
                 ].join(" ")}
                 onClick={logout}
               >

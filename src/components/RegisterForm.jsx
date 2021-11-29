@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { withRouter } from "react-router-dom";
-import users from "../api/users";
+import UserAPI from "../api/user";
 import Select from "./Form/Select";
 import Input from "./Form/Input";
 import HeroImage from "./HeroImage";
@@ -17,13 +17,12 @@ function RegisterForm({ history }) {
 
   async function submit(e) {
     e.preventDefault();
-    users
-      .register({
-        name: Name,
-        email: Email,
-        password: Password,
-        profession: Profession === "Others" ? OtherProfession : Profession,
-      })
+    UserAPI.register({
+      name: Name,
+      email: Email,
+      password: Password,
+      profession: Profession === "Others" ? OtherProfession : Profession,
+    })
       .then((res) => {
         history.push("/login");
       })

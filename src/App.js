@@ -3,7 +3,10 @@ import { useDispatch } from "react-redux";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch } from "react-router-dom";
 
-import "./assets/style.css";
+import { populateProfile } from "./store/actions/users";
+import { setAuthorizationHeader } from "./configs/axios";
+
+import UsersAPI from "./api/user";
 
 import MemberRoute from "./components/Routes/MemberRoute";
 import GuestRoute from "./components/Routes/GuestRoute";
@@ -18,10 +21,7 @@ import Joined from "./pages/Joined";
 import Unauthenticated from "./pages/401";
 import NotFound from "./pages/404";
 
-import { populateProfile } from "./store/actions/users";
-import { setAuthorizationHeader } from "./configs/axios";
-
-import UsersAPI from "./api/users";
+import "./assets/style.css";
 
 function App() {
   const history = createBrowserHistory({ basename: process.env.PUBLIC_URL });

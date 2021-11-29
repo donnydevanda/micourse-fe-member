@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import Sidebar from "../components/Sidebar";
 import formatThousand from "../helpers/formatThousand";
 import formatDate from "../helpers/formatDate";
+import Sidebar from "../components/Sidebar";
 
 export default function Transactions() {
   useEffect(() => {
