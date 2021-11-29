@@ -1,19 +1,15 @@
 import React, { useEffect } from "react";
 import Youtube from "react-youtube";
 import { useDispatch, useSelector } from "react-redux";
-
 import {
   statusCourses,
   watchCourse,
   messageCourse,
-} from "store/actions/courses";
-
-import SidebarClass from "components/SidebarClass";
-
-import courses from "api/courses";
-
-import Loading from "components/Loading";
-import Centered from "components/Centered";
+} from "../store/actions/courses";
+import SidebarClass from "../components/SidebarClass";
+import Loading from "../components/Loading";
+import Centered from "../components/Centered";
+import courses from "../api/courses";
 
 export default function DetailsClass({ match, history }) {
   const dispatch = useDispatch();

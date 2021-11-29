@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import CoursesAPI from "api/courses";
+import CoursesAPI from "../api/courses";
 import ServerError from "./500";
-import Loading from "components/Loading";
+import Loading from "../components/Loading";
 
 export default function Joined({ history, match }) {
   const [state, setState] = useState(() => ({

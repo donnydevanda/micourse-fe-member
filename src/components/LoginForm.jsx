@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { populateProfile } from "store/actions/users";
-import { setAuthorizationHeader } from "configs/axios";
-import users from "api/users";
+import { populateProfile } from "../store/actions/users";
+import { setAuthorizationHeader } from "../configs/axios";
+import users from "../api/users";
 import Input from "./Form/Input";
 import HeroImage from "./HeroImage";
 import Button from "./Form/Button";

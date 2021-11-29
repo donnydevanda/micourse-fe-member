@@ -1,5 +1,5 @@
 import { Link, withRouter } from "react-router-dom";
-import { ReactComponent as IconBack } from "assets/images/ic-back.svg";
+import { ReactComponent as IconBack } from "../assets/images/ic-back.svg";
 
 function Sidebar({ data, match, defaultUri }) {
   const getNavLinkClass = (path) => {

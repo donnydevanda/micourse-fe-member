@@ -3,7 +3,7 @@ import {
   FETCH_COURSES,
   WATCH_COURSES,
   MESSAGE_COURSES,
-} from "types/courses";
+} from "../../types/courses";
 
 const initialState = {
   data: {},

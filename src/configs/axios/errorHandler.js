@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import users from "api/users";
+import users from "../../api/users";
 
 import axios, { setAuthorizationHeader } from "./index";
 

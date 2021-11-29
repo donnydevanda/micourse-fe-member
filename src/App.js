@@ -5,23 +5,23 @@ import { Router, Route, Switch } from "react-router-dom";
 
 import "./assets/style.css";
 
-import MemberRoute from "components/Routes/MemberRoute";
-import GuestRoute from "components/Routes/GuestRoute";
+import MemberRoute from "./components/Routes/MemberRoute";
+import GuestRoute from "./components/Routes/GuestRoute";
 
-import Login from "pages/Login";
-import Register from "pages/Register";
-import MyClass from "pages/MyClass";
-import DetailsClass from "pages/DetailsClass";
-import Settings from "pages/Settings";
-import Transactions from "pages/Transactions";
-import Joined from "pages/Joined";
-import Unauthenticated from "pages/401";
-import NotFound from "pages/404";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import MyClass from "./pages/MyClass";
+import DetailsClass from "./pages/DetailsClass";
+import Settings from "./pages/Settings";
+import Transactions from "./pages/Transactions";
+import Joined from "./pages/Joined";
+import Unauthenticated from "./pages/401";
+import NotFound from "./pages/404";
 
-import { populateProfile } from "store/actions/users";
-import { setAuthorizationHeader } from "configs/axios";
+import { populateProfile } from "./store/actions/users";
+import { setAuthorizationHeader } from "./configs/axios";
 
-import UsersAPI from "api/users";
+import UsersAPI from "./api/users";
 
 function App() {
   const history = createBrowserHistory({ basename: process.env.PUBLIC_URL });

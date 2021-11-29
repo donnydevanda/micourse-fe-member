@@ -3,7 +3,7 @@ import {
   FETCH_COURSES,
   WATCH_COURSES,
   MESSAGE_COURSES,
-} from "types/courses";
+} from "../../types/courses";
 
 export const statusCourses = (status) => ({
   type: STATUS_COURSES,

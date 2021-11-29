@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CourseAPI from "api/courses";
+import CourseAPI from "../api/courses";
 import {
   statusCourses,
   fetchCourses,
   messageCourses,
-} from "store/actions/courses";
-import Sidebar from "components/Sidebar";
-import ListClassItem from "components/ListClassItem";
-import Loading from "components/Loading";
+} from "../store/actions/courses";
+import Sidebar from "../components/Sidebar";
+import ListClassItem from "../components/ListClassItem";
+import Loading from "../components/Loading";
 
 function EmptyState() {
   return (

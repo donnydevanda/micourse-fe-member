@@ -5,13 +5,13 @@ import { toast } from "react-toastify";
 import Select from "./Form/Select";
 import Input from "./Form/Input";
 import Button from "./Form/Button";
-import useForm from "helpers/hooks/useForm";
-import userAPI from "api/users";
-import mediaAPI from "api/media";
-import { populateProfile } from "store/actions/users";
-import image2base64 from "utils/image2base64";
+import useForm from "../helpers/hooks/useForm";
+import userAPI from "../api/users";
+import mediaAPI from "../api/media";
+import { populateProfile } from "../store/actions/users";
+import image2base64 from "../utils/image2base64";
 import { ReactComponent as IconUser } from "../assets/images/ic-avatar.svg";
-import fieldErrors from "helpers/fieldErrors";
+import fieldErrors from "../helpers/fieldErrors";
 
 function SettingForm({ details }) {
   const dispatch = useDispatch();

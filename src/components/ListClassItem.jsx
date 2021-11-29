@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ReactComponent as IconPlay } from "assets/images/ic-play.svg";
+import { ReactComponent as IconPlay } from "../assets/images/ic-play.svg";
 
 export default function ListClassItem({ data }) {
   return (

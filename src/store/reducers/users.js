@@ -1,4 +1,4 @@
-import { POPULATE_PROFILE } from "types/users";
+import { POPULATE_PROFILE } from "../../types/users";
 
 const initialState = null;
 
