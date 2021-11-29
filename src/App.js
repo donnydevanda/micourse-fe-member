@@ -13,6 +13,7 @@ import Register from "pages/Register";
 import MyClass from "pages/MyClass";
 import DetailsClass from "pages/DetailsClass";
 import Settings from "pages/Settings";
+import Transactions from "pages/Transactions";
 import Joined from "pages/Joined";
 import Unauthenticated from "pages/401";
 import NotFound from "pages/404";
@@ -54,6 +55,7 @@ function App() {
           />
           <MemberRoute exact path="/courses/:class" component={DetailsClass} />
           <MemberRoute path="/settings" component={Settings} />
+          <MemberRoute path="/transactions" component={Transactions} />
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>
