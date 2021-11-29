@@ -9,6 +9,8 @@ const user = {
       email: credentials.email,
     }),
   details: () => axios.get("/users"),
+  update: (data) => axios.put("/users", data),
+  logout: () => axios.post("/users/logout"),
 };
 
 export default user;
