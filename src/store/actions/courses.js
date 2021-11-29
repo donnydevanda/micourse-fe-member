@@ -15,9 +15,14 @@ export const fetchCourses = (courses) => ({
   payload: courses,
 });
 
-export const watchCourses = (course) => ({
+export const watchCourse = (course) => ({
   type: WATCH_COURSES,
   payload: course,
+});
+
+export const messageCourse = (message) => ({
+  type: MESSAGE_COURSES,
+  payload: message,
 });
 
 export const messageCourses = (message) => ({

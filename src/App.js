@@ -11,6 +11,7 @@ import GuestRoute from "components/Routes/GuestRoute";
 import Login from "pages/Login";
 import Register from "pages/Register";
 import MyClass from "pages/MyClass";
+import DetailsClass from "pages/DetailsClass";
 import Joined from "pages/Joined";
 import Unauthenticated from "pages/401";
 import NotFound from "pages/404";
@@ -45,6 +46,12 @@ function App() {
           <GuestRoute path="/private" component={Unauthenticated} />
           <MemberRoute exact path="/" component={MyClass} />
           <MemberRoute exact path="/joined/:class" component={Joined} />
+          <MemberRoute
+            exact
+            path="/courses/:class/:chapter/:uid"
+            component={DetailsClass}
+          />
+          <MemberRoute exact path="/courses/:class" component={DetailsClass} />
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>

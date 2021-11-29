@@ -32,6 +32,19 @@ export default function courses(state = initialState, action) {
         status: "ok",
       };
 
+    case WATCH_COURSES:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          [action.payload.id]: {
+            ...state.data[action.payload.id],
+            ...action.payload,
+          },
+        },
+        status: "ok",
+      };
+
     case MESSAGE_COURSES:
       return {
         ...state,
