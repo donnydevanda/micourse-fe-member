@@ -12,8 +12,8 @@ import Loading from "../components/Loading";
 
 function EmptyState() {
   return (
-    <section className="flex h-screen items-center">
-      <div className="w-5/12 text-center py-12 mx-auto">
+    <section className="h-screen flex flex-col justify-center items-center relative z-50 bg-white">
+      <div className="w-full sm:w-5/12 text-center py-12 mx-auto">
         <img src="/images/illustration-myclass-empty.jpg" alt="Success Join" />
         <h1 className="text-3xl text-gray-900 mt-12">Time to Invest</h1>
         <p className="text-lg text-gray-600 mt-4 mb-8 mx-auto text-center">
@@ -51,22 +51,22 @@ export default function MyClass() {
     <div className="flex">
       <Sidebar></Sidebar>
       <main className="flex-1">
-        <div className="px-16">
+        <div className="px4 sm:px-16">
           {COURSES?.status === "loading" && <Loading />}
           {COURSES?.status === "error" && COURSES.message}
           {COURSES?.status === "ok" &&
             (COURSES.total > 0 ? (
               <>
-                <section className="flex flex-col mt-8">
-                  <h1 className="text-4xl text-gray-900 font-medium">
+                <section className="flex flex-col mt-8 pl-12 sm:pl-0 ml-4">
+                  <h1 className="text-xl sm:text-4xl text-gray-900 font-medium">
                     My Class
                   </h1>
-                  <p className="text-lg text-gray-600">
+                  <p className="text-sm sm:text-lg text-gray-600">
                     Continue learning to pursue your dream
                   </p>
                 </section>
                 <section className="flex flex-col mt-8">
-                  <div className="flex justify-start items-center -mx-4">
+                  <div className="flex flex-col sm:block justify-start items-center -mx-4 px-4">
                     {Object.values(COURSES.data)?.map?.((item, index) => {
                       return <ListClassItem data={item.course} key={index} />;
                     })}

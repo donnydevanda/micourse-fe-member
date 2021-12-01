@@ -31111,10 +31111,11 @@ video {
 /* Component - Header */
 
 .toggle {
-  position: relative;
+  position: absolute;
   width: 20px;
   height: 20px;
-  z-index: 9999;
+  left: 30px;
+  top: 45px;
 }
 
 .toggle:focus {
@@ -31125,7 +31126,7 @@ video {
   position: absolute;
   right: 0px;
   --tw-bg-opacity: 1;
-  background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+  background-color: rgba(17, 24, 39, var(--tw-bg-opacity));
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
@@ -31161,6 +31162,14 @@ video {
 
 .toggle.active:after {
   transform: translateY(-50%) rotate(45deg);
+}
+
+/* Guest Page */
+
+.guest-page .toggle {
+  position: relative;
+  left: auto;
+  top: auto;
 }
 
 /* Common - Link Wrapped */
@@ -31240,6 +31249,21 @@ video {
 
 .modal-close::after {
   transform: rotate(-45deg);
+}
+
+aside .overlay {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  --tw-bg-opacity: 1;
+  background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
+  opacity: 0.25;
+  content: "";
+  z-index: 9;
+  width: 100vw;
+  height: 100vh;
 }
 
 .overlay {

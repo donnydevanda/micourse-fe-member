@@ -14,7 +14,7 @@ import CourseAPI from "../api/course";
 export default function DetailsClass({ match, history }) {
   const dispatch = useDispatch();
 
-  const COURSES = useSelector((state) => state.CourseAPI);
+  const COURSES = useSelector((state) => state.courses);
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -31,19 +31,19 @@ export default function DetailsClass({ match, history }) {
       });
   }, [match.params.class, dispatch]);
 
-  if (COURSES.status === "loading") return <Loading></Loading>;
-  if (COURSES.status === "error")
+  if (COURSES?.status === "loading") return <Loading></Loading>;
+  if (COURSES?.status === "error")
     return <Centered>{COURSES?.message ?? "Error here"}</Centered>;
 
   let currentChapter, currentLesson;
   if (
-    COURSES.status === "ok" &&
+    COURSES?.status === "ok" &&
     COURSES?.data?.[match.params.class]?.chapters
   ) {
     currentChapter =
       COURSES?.data?.[match.params.class]?.chapters?.find(
         (chapter) => +chapter.id === +match.params.chapter
-      ) ?? COURSES.data[match.params.class]?.chapters[0];
+      ) ?? COURSES?.data[match.params.class]?.chapters[0];
 
     currentLesson =
       currentChapter?.lessons?.find(
@@ -52,12 +52,13 @@ export default function DetailsClass({ match, history }) {
   }
 
   function nextVideo() {}
+
   return (
     <div className="flex">
-      {COURSES.data?.[match.params.class]?.chapters?.length > 0 && (
+      {COURSES?.data?.[match.params.class]?.chapters?.length > 0 && (
         <>
           <SidebarClass
-            data={COURSES.data[match.params.class]}
+            data={COURSES?.data[match.params.class]}
             defaultUri={`/courses/${match.params.class}/${currentChapter.id}/${currentLesson.video}`}
           ></SidebarClass>
           <main className="flex-1">

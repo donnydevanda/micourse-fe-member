@@ -1,27 +1,36 @@
 import { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
-import Logo from "../assets/images/logo.svg";
+import { ReactComponent as Logo } from "../assets/images/logo.svg";
 
 function Header({ onLight, location }) {
   const [ToggleMenu, setToggleMenu] = useState(false);
-  const linkColor = onLight ? "text-gray-900" : "text-white";
+
+  const linkColor = onLight ? "text-white sm:text-gray-900" : "text-white";
+
   const linkCTA =
     location.pathname.indexOf("/login") > -1 ? `/register` : `/login`;
+
   const textCTA =
     location.pathname.indexOf("/login") > -1 ? "Register" : "Login";
+
+  const classNameLogo = onLight
+    ? ToggleMenu
+      ? "on-dark"
+      : "on-light"
+    : "on-dark";
 
   return (
     <header
       className={[
-        "container mx-auto flex justify-between items-center px-4",
-        ToggleMenu ? "fixed w-full px-4" : "",
+        "flex justify-between items-center",
+        ToggleMenu ? "fixed w-full px-4 -ml-4" : "",
       ].join(" ")}
     >
-      <div style={{ zIndex: 50 }}>
-        <img src={Logo} alt="Micourse Logo" />
+      <div style={{ height: 54 }} className="z-50">
+        <Logo className={{ classNameLogo }} />
       </div>
 
-      <div className="flex md:hidden px-4">
+      <div className="flex sm:hidden ">
         <button
           onClick={() => setToggleMenu((prev) => !prev)}
           className={["toggle z-50", ToggleMenu ? "active" : ""].join(" ")}
@@ -39,7 +48,7 @@ function Header({ onLight, location }) {
             href={`${process.env.REACT_APP_FRONTPAGE_URL}/`}
             className={[
               linkColor,
-              "text-white hover:text-blue-500 text-lg px-6 py-3",
+              "text-white hover:text-blue-500 text-lg px-6 py-3 my-4 sm:my-0 font-medium",
             ].join(" ")}
           >
             Home
@@ -50,7 +59,7 @@ function Header({ onLight, location }) {
             href={`${process.env.REACT_APP_FRONTPAGE_URL}/courses`}
             className={[
               linkColor,
-              "text-white hover:text-blue-500 text-lg px-6 py-3",
+              "text-white hover:text-blue-500 text-lg px-6 py-3 my-4 sm:my-0 font-medium",
             ].join(" ")}
           >
             Explore
@@ -61,7 +70,7 @@ function Header({ onLight, location }) {
             href={`${process.env.REACT_APP_FRONTPAGE_URL}/`}
             className={[
               linkColor,
-              "text-white hover:text-blue-500 text-lg px-6 py-3",
+              "text-white hover:text-blue-500 text-lg px-6 py-3 my-4 sm:my-0 font-medium",
             ].join(" ")}
           >
             Features
@@ -72,7 +81,7 @@ function Header({ onLight, location }) {
             href={`${process.env.REACT_APP_FRONTPAGE_URL}/`}
             className={[
               linkColor,
-              "text-white hover:text-blue-500 text-lg px-6 py-3",
+              "text-white hover:text-blue-500 text-lg px-6 py-3 my-4 sm:my-0 font-medium",
             ].join(" ")}
           >
             Blog
@@ -81,7 +90,7 @@ function Header({ onLight, location }) {
         <li className="mt-8 md:mt-0">
           <Link
             to={linkCTA}
-            className="bg-indigo-700 hover:bg-indigo-900 text-white text-lg transition-all duration-200 px-6 py-3 ml-6"
+            className="bg-indigo-700 hover:bg-indigo-900 text-white text-lg transition-all duration-200 px-6 py-3 my-4 sm:my-0 font-medium ml-6"
           >
             {textCTA}
           </Link>

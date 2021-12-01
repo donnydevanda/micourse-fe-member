@@ -57,7 +57,7 @@ function LoginForm({ history }) {
 
   return (
     <div className="flex justify-center items-center pb-24">
-      <div className="w-3/12">
+      <div className="w-full sm:w-3/12">
         <h1 className="text-4xl text-gray-900 mb-6">
           <span className="font-bold">Continue </span>Study, Finish Your{" "}
           <span className="font-bold">Goals.</span>
@@ -83,9 +83,9 @@ function LoginForm({ history }) {
         </form>
       </div>
 
-      <div className="w-1/12"></div>
+      <div className="w-1/12 hidden sm:block"></div>
 
-      <div className="hidden w-5/12 md:flex justify-end pt-24 pr-16">
+      <div className="w-5/12 hidden sm:block justify-end pt-24 pr-16">
         <HeroImage
           imageSrc="/images/hero-login.jpg"
           imageAlt="Login Hero"

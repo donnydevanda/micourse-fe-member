@@ -39,7 +39,7 @@ export default function Transactions() {
             Keep on Track on what you invested
           </p>
         </section>
-        <section className="flex flex-col mt-8">
+        {/* <section className="flex flex-col mt-8">
           {items?.length > 0
             ? items.map((item) => {
                 return (
@@ -83,7 +83,7 @@ export default function Transactions() {
                 );
               })
             : ""}
-        </section>
+        </section> */}
       </main>
     </div>
   );

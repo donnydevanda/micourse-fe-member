@@ -10,10 +10,10 @@ export default function Register() {
 
   return (
     <>
-      <section className="container mx-auto pt-10">
+      <section className="container mx-auto pt-10 px-4 guest-page relative z-10">
         <Header onLight />
       </section>
-      <section className="container mx-auto pt-10">
+      <section className="container mx-auto pt-10 px-4">
         <RegisterForm />
       </section>
       <section className="mt-24 bg-indigo-900">

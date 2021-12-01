@@ -6,10 +6,11 @@
 
 /* Component - Header */
 .toggle {
-  position: relative;
+  position: absolute;
   width: 20px;
   height: 20px;
-  z-index: 9999;
+  left: 30px;
+  top: 45px;
 }
 
 .toggle:focus {
@@ -18,7 +19,7 @@
 
 .toggle:before,
 .toggle:after {
-  @apply right-0 absolute bg-gray-200 transition-all duration-200;
+  @apply right-0 absolute bg-gray-900 transition-all duration-200;
   content: "";
   height: 3px;
   transform-origin: center;
@@ -46,6 +47,13 @@
 
 .toggle.active:after {
   transform: translateY(-50%) rotate(45deg);
+}
+
+/* Guest Page */
+.guest-page .toggle {
+  position: relative;
+  left: auto;
+  top: auto;
 }
 
 /* Common - Link Wrapped */
@@ -101,6 +109,14 @@
 
 .modal-close::after {
   transform: rotate(-45deg);
+}
+
+aside .overlay {
+  @apply bg-black opacity-25 inset-0 fixed;
+  content: "";
+  z-index: 9;
+  width: 100vw;
+  height: 100vh;
 }
 
 .overlay {

@@ -7,14 +7,14 @@ import userAPI from "../api/user";
 import { ReactComponent as DefaultUser } from "../assets/images/ic-avatar.svg";
 
 function Sidebar({ match, history }) {
-  const [toggleMenu, setToggleMenu] = useState(false);
+  const [ToggleMenu, setToggleMenu] = useState(false);
 
   const getNavLinkClass = (path) => {
     return match.path === path
       ? "active text-white bg-indigo-700"
       : "text-indigo-300";
   };
-  const USERS = useSelector((state) => state.userAPI);
+  const USERS = useSelector((state) => state.users);
 
   function logout() {
     userAPI.logout().then(() => {
@@ -25,7 +25,7 @@ function Sidebar({ match, history }) {
 
   const sidebarStyle = {
     width: 280,
-    left: window.innerWidth < 640 && !toggleMenu ? "-280px" : 0,
+    left: window.innerWidth < 640 && !ToggleMenu ? "-280px" : 0,
   };
 
   return (
@@ -33,14 +33,14 @@ function Sidebar({ match, history }) {
       <div className="flex sm:hidden">
         <button
           onClick={() => setToggleMenu((prev) => !prev)}
-          className={["toggle z-50", toggleMenu ? "active" : ""].join(" ")}
+          className={["toggle z-50", ToggleMenu ? "active" : ""].join(" ")}
         ></button>
       </div>
       <aside
         className="transition-all duration-300 bg-indigo-900 max-h-screen h-screen overflow-y-auto min-h-full fixed sm:relative z-50"
         style={sidebarStyle}
       >
-        {toggleMenu && (
+        {ToggleMenu && (
           <div
             className="overlay"
             onClick={() => setToggleMenu((prev) => !prev)}

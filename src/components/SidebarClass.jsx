@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { ReactComponent as IconBack } from "../assets/images/ic-back.svg";
 
 function Sidebar({ data, match, defaultUri }) {
+  const [ToggleMenu, setToggleMenu] = useState(false);
+
   const getNavLinkClass = (path) => {
     return match.url === path || defaultUri === path
       ? "text-blue-500"
@@ -36,29 +39,48 @@ function Sidebar({ data, match, defaultUri }) {
       });
   });
 
+  const sidebarStyle = {
+    width: 280,
+    left: window.innerWidth < 640 && !ToggleMenu ? "-280px" : 0,
+  };
+
   return (
-    <aside
-      className="bg-indigo-900 max-h-screen h-screen overflow-y-auto"
-      style={{ width: 280 }}
-    >
-      <div
-        className="max-h-screen h-screen fixed bg-indigo-900 flex flex-col content-between"
-        style={{ width: 280 }}
-      >
-        <ul className="main-menu mt-12">
-          <li>
-            <Link
-              className="relative flex items-center py-3 px-5 w-full text-left text-white mb-12"
-              to="/"
-            >
-              <IconBack className="fill-white mr-2"></IconBack>
-              Back to Home
-            </Link>
-          </li>
-          {list}
-        </ul>
+    <>
+      <div className="flex sm:hidden">
+        <button
+          onClick={() => setToggleMenu((prev) => !prev)}
+          className={["toggle z-50", ToggleMenu ? "active" : ""].join(" ")}
+        ></button>
       </div>
-    </aside>
+      <aside
+        className="bg-indigo-900 max-h-screen h-screen overflow-y-auto transition-all duration-300 min-h-full fixed sm:relative z-50"
+        style={sidebarStyle}
+      >
+        {ToggleMenu && (
+          <div
+            className="overlay"
+            onClick={() => setToggleMenu((prev) => !prev)}
+          ></div>
+        )}
+        <div
+          className="max-h-screen h-screen fixed bg-indigo-900 flex flex-col content-between z-10"
+          style={{ width: 280 }}
+        >
+          <ul className="main-menu mt-12 overflow-y-auto">
+            <li>
+              <Link
+                className="relative flex items-center py-3 px-5 w-full text-left text-white mb-12"
+                to="/"
+              >
+                <IconBack className="fill-white mr-2"></IconBack>
+                Back to Home
+              </Link>
+            </li>
+            {list}
+          </ul>
+        </div>
+      </aside>
+    </>
   );
 }
 
