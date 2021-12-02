@@ -14,8 +14,9 @@ function LoginForm({ history }) {
   const [Email, setEmail] = useState(() => "");
   const [Password, setPassword] = useState(() => "");
 
-  async function submit(e) {
+  function submit(e) {
     e.preventDefault();
+
     UserAPI.login({ email: Email, password: Password })
       .then((res) => {
         setAuthorizationHeader(res.data.token);
@@ -24,9 +25,8 @@ function LoginForm({ history }) {
           const production =
             process.env.REACT_APP_FRONTPAGE_URL ===
             "https://micourse.vercel.app"
-              ? "Domain = https://micourse.vercel.app"
+              ? "Domain = micourse.vercel.app"
               : "";
-
           localStorage.setItem(
             "MICOURSE:token",
             JSON.stringify({
@@ -47,7 +47,9 @@ function LoginForm({ history }) {
 
           document.cookie = `MICOURSE:user=${JSON.stringify(
             userCookie
-          )}; expires=${expires.toUTCString()}; path:/; ${production}`;
+          )}- expires=${expires.toUTCString()}- path:/- ${production}`;
+
+          console.log(userCookie);
 
           history.push(redirect || "/");
         });

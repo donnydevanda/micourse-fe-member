@@ -9,7 +9,7 @@ const MemberRoute = ({
 }) => {
   const ok = localStorage.getItem("MICOURSE:token");
 
-  localStorage.removeItem("BWAMICRO:redirect");
+  localStorage.removeItem("MICOURSE:redirect");
 
   return (
     <Route

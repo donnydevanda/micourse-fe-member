@@ -4,7 +4,7 @@ import CourseAPI from "../api/course";
 import {
   statusCourses,
   fetchCourses,
-  messageCourses,
+  messageCourse,
 } from "../store/actions/courses";
 import Sidebar from "../components/Sidebar";
 import ListClassItem from "../components/ListClassItem";
@@ -43,7 +43,7 @@ export default function MyClass() {
     CourseAPI.mine()
       .then((res) => dispatch(fetchCourses(res.data)))
       .catch((err) => {
-        dispatch(messageCourses(err?.response?.data?.message));
+        dispatch(messageCourse(err?.response?.data?.message));
       });
   }, [dispatch]);
 

@@ -1,8 +1,8 @@
 import {
-  STATUS_COURSES,
   FETCH_COURSES,
-  WATCH_COURSES,
-  MESSAGE_COURSES,
+  WATCH_COURSE,
+  STATUS_COURSES,
+  MESSAGE_COURSE,
 } from "../../types/courses";
 
 export const statusCourses = (status) => ({
@@ -16,16 +16,11 @@ export const fetchCourses = (courses) => ({
 });
 
 export const watchCourse = (course) => ({
-  type: WATCH_COURSES,
+  type: WATCH_COURSE,
   payload: course,
 });
 
 export const messageCourse = (message) => ({
-  type: MESSAGE_COURSES,
-  payload: message,
-});
-
-export const messageCourses = (message) => ({
-  type: MESSAGE_COURSES,
+  type: MESSAGE_COURSE,
   payload: message,
 });

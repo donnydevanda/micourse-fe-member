@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom";
 import CoursesAPI from "../api/course";
 import ServerError from "./500";
 import Loading from "../components/Loading";
@@ -10,24 +11,18 @@ export default function Joined({ history, match }) {
     data: {},
   }));
 
-  useEffect(() => {
-    CoursesAPI.details(match.params.class)
-      .then((res) => setState({ isLoading: false, isError: false, data: res }))
-      .catch((err) =>
-        setState({ isLoading: false, isError: true, data: null })
-      );
+  const joining = useCallback(async () => {
+    try {
+      const details = await CoursesAPI.details(match.params.class);
+      const joined = await CoursesAPI.join(match.params.class);
+      if (joined.data.snap_url) window.location.href = joined.data.snap_url;
+      else setState({ isLoading: false, isError: false, data: details });
+    } catch (error) {}
   }, [match.params.class]);
 
-  function joining() {
-    CoursesAPI.join(match.params.class)
-      .then((res) => {
-        history.push(`/courses/${match.params.class}`);
-      })
-      .catch((err) => {
-        if (err?.response?.data?.message === "user already take this course")
-          history.push(`/courses/${match.params.class}`);
-      });
-  }
+  useEffect(() => {
+    joining();
+  }, [joining]);
 
   if (state.isLoading) return <Loading></Loading>;
   if (state.isError) return <ServerError></ServerError>;
@@ -39,14 +34,13 @@ export default function Joined({ history, match }) {
       <p className="text-lg text-gray-600 mt-4 mb-8 lg:w-3/12 xl:w-2/12 mx-auto text-center">
         You have sucessfully joined <strong>{state?.data?.name}</strong> course.
       </p>
-      <span
-        onClick={joining}
-        to="/login"
+      <Link
+        to={`/courses/${match.params.class}`}
         className="cursor-pointer bg-yellow-500 hover:bg-yellow-600 text-white transition-all duration-200 
         focus:outline-none shadow-inner text-whitepx-6 py-3 px-12"
       >
         Start Learn
-      </span>
+      </Link>
     </section>
   );
 }

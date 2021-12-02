@@ -18,7 +18,7 @@ function Sidebar({ match, history }) {
 
   function logout() {
     userAPI.logout().then(() => {
-      localStorage.removeItem("BWAMICRO:token");
+      localStorage.removeItem("MICOURSE:token");
       history.push("/login");
     });
   }
