@@ -6,7 +6,7 @@ import { Router, Route, Switch } from "react-router-dom";
 import { populateProfile } from "./store/actions/users";
 import { setAuthorizationHeader } from "./configs/axios";
 
-import UsersAPI from "./api/user";
+import UserAPI from "./api/user";
 
 import MemberRoute from "./components/Routes/MemberRoute";
 import GuestRoute from "./components/Routes/GuestRoute";
@@ -33,7 +33,7 @@ function App() {
       session = JSON.parse(localStorage.getItem("MICOURSE:token"));
       setAuthorizationHeader(session.token);
 
-      UsersAPI.details().then((details) => {
+      UserAPI.details().then((details) => {
         dispatch(populateProfile(details.data));
       });
     }

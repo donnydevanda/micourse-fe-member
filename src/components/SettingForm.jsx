@@ -76,45 +76,43 @@ function SettingForm({ details }) {
 
   return (
     <>
-      <section className="flex flex-col mt-8">
-        <div className="flex justify-start items-center">
-          <div className="w-auto text-center -px-5">
-            <div className="rounded-full overflow-hidden w-24 h-24 mr-4">
-              {state.avatar ? (
-                <img
-                  className="object-cover w-full h-full"
-                  src={state.avatar}
-                  alt="Preview"
-                />
-              ) : (
-                <IconUser
-                  className="fill-indigo-500"
-                  style={{ width: 90, height: 90 }}
-                ></IconUser>
-              )}
-            </div>
-          </div>
-          <div className="w-full flex flex-col">
-            <span className="text-gray-600">Add your picture...</span>
-            <div>
-              <input
-                type="file"
-                name="avatar"
-                ref={addPicture}
-                className="hidden"
-                onChange={previewImage}
+      <div className="flex justify-start items-center">
+        <div className="w-auto text-center -px-5">
+          <div className="rounded-full overflow-hidden w-24 h-24 mr-4">
+            {state.avatar ? (
+              <img
+                className="object-cover w-full h-full"
+                src={state.avatar}
+                alt="Preview"
               />
-              <button
-                onClick={() => addPicture.current.click}
-                className="bg-yellow-600 hover:bg-yellow-500 text-white transition-all duration-200 
-          focus:outline-none shadow-inner text-whitepx-6 py-2 mt-3 px-8"
-              >
-                Browse
-              </button>
-            </div>
+            ) : (
+              <IconUser
+                className="fill-indigo-500"
+                style={{ width: 90, height: 90 }}
+              />
+            )}
           </div>
         </div>
-      </section>
+        <div className="w-full flex flex-col">
+          <span className="text-gray-600">Add your picture...</span>
+          <div>
+            <input
+              type="file"
+              name="avatar"
+              ref={addPicture}
+              className="hidden"
+              onChange={previewImage}
+            />
+            <button
+              onClick={() => addPicture.current.click}
+              className="bg-yellow-600 hover:bg-yellow-500 text-white transition-all duration-200 
+          focus:outline-none shadow-inner text-whitepx-6 py-2 mt-3 px-8"
+            >
+              Browse
+            </button>
+          </div>
+        </div>
+      </div>
 
       <section className="flex flex-col mt-8">
         <div className="flex items-center pb-24">

@@ -100,9 +100,7 @@ function RegisterForm({ history }) {
           <Button text="Register" />
         </form>
       </div>
-
-      <div className="w-1/12 hidden sm:block"></div>
-
+      <div className="w-1/12 hidden sm:block" />
       <div className="w-5/12 hidden sm:block md:flex justify-end pt-24 pr-16">
         <HeroImage
           imageSrc="/images/hero-register.jpg"

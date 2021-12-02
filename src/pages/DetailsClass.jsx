@@ -7,13 +7,13 @@ import {
   messageCourse,
 } from "../store/actions/courses";
 import SidebarClass from "../components/SidebarClass";
+import PageHeader from "../components/PageHeader";
 import Loading from "../components/Loading";
 import Centered from "../components/Centered";
 import CourseAPI from "../api/course";
 
 export default function DetailsClass({ match, history }) {
   const dispatch = useDispatch();
-
   const COURSES = useSelector((state) => state.courses);
 
   useEffect(() => {
@@ -36,6 +36,7 @@ export default function DetailsClass({ match, history }) {
     return <Centered>{COURSES?.message ?? "Error here"}</Centered>;
 
   let currentChapter, currentLesson;
+
   if (
     COURSES?.status === "ok" &&
     COURSES?.data?.[match.params.class]?.chapters
@@ -51,8 +52,6 @@ export default function DetailsClass({ match, history }) {
       ) ?? currentChapter?.lessons?.[0];
   }
 
-  function nextVideo() {}
-
   return (
     <div className="flex">
       {COURSES?.data?.[match.params.class]?.chapters?.length > 0 && (
@@ -60,20 +59,18 @@ export default function DetailsClass({ match, history }) {
           <SidebarClass
             data={COURSES?.data[match.params.class]}
             defaultUri={`/courses/${match.params.class}/${currentChapter.id}/${currentLesson.video}`}
-          ></SidebarClass>
+          />
           <main className="flex-1">
             <div className="px-4 sm:px-16">
-              <section className="flex flex-col mt-8 pl-12 sm:pl-0">
-                <h1 className="text-xl sm:text-4xl text-gray-900 font-medium">
-                  {currentLesson?.name ?? "Lesson Name"}
-                </h1>
-                <p className="text-sm sm:text-lg text-gray-600">
-                  Materi bagian dari {currentChapter?.name ?? "Chapter Name"}
-                </p>
-              </section>
-              <section className="flex flex-col mt-8">
+              <PageHeader
+                title={currentLesson?.name ?? "Lesson Name"}
+                subtitle={`Part of Chapters: ${
+                  currentChapter?.name ?? "Chapter Name"
+                }`}
+              />
+              <section className="flex flex-col mt-4">
                 <div className="flex justify-start items-center -mx-4">
-                  <div className="w-full px-4">
+                  <div className="w-full px-8">
                     <div className="relative">
                       <div className="video-wrapper">
                         {currentLesson?.video && (
@@ -88,8 +85,7 @@ export default function DetailsClass({ match, history }) {
                                 rel: 0,
                               },
                             }}
-                            onEnd={nextVideo}
-                          ></Youtube>
+                          />
                         )}
                       </div>
                     </div>

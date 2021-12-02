@@ -5,7 +5,10 @@ import OrderAPI from "../api/order";
 import formatThousand from "../helpers/formatThousand";
 import formatDate from "../helpers/formatDate";
 import Sidebar from "../components/Sidebar";
+import PageHeader from "../components/PageHeader";
 import Loading from "../components/Loading";
+import Success from "../components/Success";
+import EmptyState from "../components/EmptyState";
 import {
   statusOrders,
   fetchOrders,
@@ -45,50 +48,20 @@ export default function Transactions() {
 
   return (
     <div className="flex">
-      <Sidebar></Sidebar>
+      <Sidebar />
       <main className="flex-1">
         <div className="px-4 sm:px-16">
           {ORDERS?.status === "loading" && <Loading />}
           {ORDERS?.status === "error" && ORDERS?.message}
           {ORDERS?.status === "ok" &&
             (params.order_id ? (
-              <section className="h-screen flex justify-center flex-col items-center">
-                <div className="w-5/12 text-center py-12 mx-auto">
-                  <img
-                    src={
-                      ORDERS?.data[params.order_id]?.metadata?.course_thumbnail
-                    }
-                    alt="Success join premium class"
-                  />
-                  <h1 className="text-3xl text-gray-900 mt-12">
-                    Congratulations
-                  </h1>
-                  <p className="text-lg text-gray-600 mt-4 mb-8 mx-auto text-center">
-                    You have successfully joined our{" "}
-                    <strong>
-                      {ORDERS?.data[params.order_id]?.metadata?.course_name ??
-                        "Class Name"}
-                    </strong>{" "}
-                    class
-                  </p>
-                  <Link
-                    className="bg-yellow-500 hover:bg-yellow-400 transition-all duration-200 focus:outline-none shadow-inner text-white px-6 py-3 mt-5"
-                    to={`/courses/${ORDERS?.data[params.order_id]?.course_id}`}
-                  >
-                    Mulai Belajar
-                  </Link>
-                </div>
-              </section>
+              <Success data={ORDERS?.data[params.order_id]} />
             ) : ORDERS?.total > 0 ? (
               <>
-                <section className="flex flex-col mt-8 pl-12 sm:pl-0">
-                  <h1 className="text-xl sm:text-4xl text-gray-900 font-medium">
-                    Transactions
-                  </h1>
-                  <p className="text-sm sm:text-lg text-gray-600">
-                    Keep on tract what you've invested
-                  </p>
-                </section>
+                <PageHeader
+                  title="Transactions"
+                  subtitle="Keep on tract what you've invested"
+                />
                 <section className="flex flex-wrap flex-col mt-8">
                   {Object.values(ORDERS?.data)?.map?.((item) => {
                     return (
@@ -147,28 +120,7 @@ export default function Transactions() {
                 </section>
               </>
             ) : (
-              <section className="h-screen flex justify-center flex-col items-center relative z-50 bg-white">
-                <div className="w-full sm:w-5/12 text-center py-12 mx-auto">
-                  {/* <img
-                    src={`${process.env.PUBLIC_URL}/assets/images/illustration-myclass-empty.jpg`}
-                    alt="Success join premium class"
-                  /> */}
-                  <h1 className="text-3xl text-gray-900 mt-12">
-                    Time to Invest
-                  </h1>
-                  <p className="text-lg text-gray-600 mt-4 mb-8 mx-auto text-center">
-                    It seems you don't have any transaction
-                  </p>
-                  <a
-                    className="bg-yellow-500 hover:bg-yellow-400 transition-all duration-200 focus:outline-none shadow-inner text-white px-6 py-3 mt-5"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={`${process.env.REACT_APP_FRONTPAGE_URL}/courses`}
-                  >
-                    Mulai Belajar
-                  </a>
-                </div>
-              </section>
+              <EmptyState />
             ))}
         </div>
       </main>

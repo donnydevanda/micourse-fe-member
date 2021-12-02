@@ -84,10 +84,8 @@ function LoginForm({ history }) {
           <Button text="Login" />
         </form>
       </div>
-
-      <div className="w-1/12 hidden sm:block"></div>
-
-      <div className="w-5/12 hidden sm:block justify-end pt-24 pr-16">
+      <div className="w-1/12 hidden sm:block" />
+      <div className="w-5/12 hidden sm:block md:flex justify-end pt-24 pr-16">
         <HeroImage
           imageSrc="/images/hero-login.jpg"
           imageAlt="Login Hero"

@@ -1,20 +1,23 @@
 import { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 import userAPI from "../api/user";
-
 import { ReactComponent as DefaultUser } from "../assets/images/ic-avatar.svg";
 
 function Sidebar({ match, history }) {
   const [ToggleMenu, setToggleMenu] = useState(false);
+  const USERS = useSelector((state) => state.users);
 
   const getNavLinkClass = (path) => {
     return match.path === path
       ? "active text-white bg-indigo-700"
       : "text-indigo-300";
   };
-  const USERS = useSelector((state) => state.users);
+
+  const sidebarStyle = {
+    width: 280,
+    left: window.innerWidth < 640 && !ToggleMenu ? "-280px" : 0,
+  };
 
   function logout() {
     userAPI.logout().then(() => {
@@ -23,19 +26,15 @@ function Sidebar({ match, history }) {
     });
   }
 
-  const sidebarStyle = {
-    width: 280,
-    left: window.innerWidth < 640 && !ToggleMenu ? "-280px" : 0,
-  };
-
   return (
     <>
       <div className="flex sm:hidden">
         <button
           onClick={() => setToggleMenu((prev) => !prev)}
           className={["toggle z-50", ToggleMenu ? "active" : ""].join(" ")}
-        ></button>
+        />
       </div>
+
       <aside
         className="transition-all duration-300 bg-indigo-900 max-h-screen h-screen overflow-y-auto min-h-full fixed sm:relative z-50"
         style={sidebarStyle}
@@ -44,7 +43,7 @@ function Sidebar({ match, history }) {
           <div
             className="overlay"
             onClick={() => setToggleMenu((prev) => !prev)}
-          ></div>
+          />
         )}
         <div
           className="max-h-screen h-screen fixed bg-indigo-900 flex flex-col content-between z-50"
@@ -60,11 +59,10 @@ function Sidebar({ match, history }) {
                     alt={USERS?.name}
                   />
                 ) : (
-                  <DefaultUser className="fill-indigo-500 w-24 h-24"></DefaultUser>
+                  <DefaultUser className="fill-indigo-500 w-24 h-24" />
                 )}
               </div>
             </div>
-
             <h6 className="text-white text-xl">{USERS?.name ?? "Username"}</h6>
             <span className="text-indigo-300 text-sm">
               {USERS?.profession ?? "Profession"}
@@ -83,6 +81,7 @@ function Sidebar({ match, history }) {
                 My Class
               </Link>
             </li>
+
             <li>
               <a
                 target="_blank"
@@ -95,6 +94,7 @@ function Sidebar({ match, history }) {
                 Library
               </a>
             </li>
+
             <li>
               <Link
                 className={[
@@ -106,6 +106,7 @@ function Sidebar({ match, history }) {
                 Transactions
               </Link>
             </li>
+
             <li>
               <Link
                 className={[
@@ -125,7 +126,7 @@ function Sidebar({ match, history }) {
             <li>
               <button
                 className={[
-                  "nav-link relative text-indigo-300 flex items-center py-3 px-5 transition-all duration-200 hover:text-white active:text-white focus:outline-none w-full text-left",
+                  "nav-link relative text-indigo-300 flex items-center py-8 px-5 transition-all duration-200 hover:text-white active:text-white focus:outline-none w-full text-left",
                 ].join(" ")}
                 onClick={logout}
               >

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import CoursesAPI from "../api/course";
+import CourseAPI from "../api/course";
 import ServerError from "./500";
 import Loading from "../components/Loading";
 
@@ -13,8 +13,8 @@ export default function Joined({ history, match }) {
 
   const joining = useCallback(async () => {
     try {
-      const details = await CoursesAPI.details(match.params.class);
-      const joined = await CoursesAPI.join(match.params.class);
+      const details = await CourseAPI.details(match.params.class);
+      const joined = await CourseAPI.join(match.params.class);
       if (joined.data.snap_url) window.location.href = joined.data.snap_url;
       else setState({ isLoading: false, isError: false, data: details });
     } catch (error) {}

@@ -6,9 +6,14 @@ function Sidebar({ data, match, defaultUri }) {
   const [ToggleMenu, setToggleMenu] = useState(false);
 
   const getNavLinkClass = (path) => {
-    return match.url === path || defaultUri === path
-      ? "text-blue-500"
-      : "text-indigo-500";
+    return match.path === path
+      ? "active text-white bg-indigo-700"
+      : "text-indigo-300";
+  };
+
+  const sidebarStyle = {
+    width: 280,
+    left: window.innerWidth < 640 && !ToggleMenu ? "-280px" : 0,
   };
 
   const list = [];
@@ -16,33 +21,29 @@ function Sidebar({ data, match, defaultUri }) {
     list.push(
       <li key={`${chapter.course_id}-${index}`}>
         <span className="nav-header relative block py-3 px-5 bg-indigo-800 text-white text-left">
-          {chapter?.name ?? "Chapter Name"}
+          {chapter?.name ?? "Chapter name"}
         </span>
       </li>
     );
-
-    if (chapter?.lesson?.length > 0)
+    if (chapter?.lessons?.length > 0)
       chapter.lessons.forEach((lesson, index2) => {
         list.push(
-          <li key={`${chapter.course_id}-${lesson.id}-${index}`}>
+          <li key={`${chapter.course_id}-${lesson.id}-${index2}`}>
             <Link
               className={[
                 "relative flex items-center py-3 px-5 transition-all duration-200 w-full text-left truncate ...",
-                getNavLinkClass(`/courses/${data.id}/${lesson.video}`),
+                getNavLinkClass(
+                  `/courses/${data.id}/${chapter.id}/${lesson.video}`
+                ),
               ].join(" ")}
-              to={`/courses/${data.id}/${lesson.video}`}
+              to={`/courses/${data.id}/${chapter.id}/${lesson.video}`}
             >
-              {lesson?.name ?? "Lesson Name"}
+              {lesson?.name ?? "Lesson name"}
             </Link>
           </li>
         );
       });
   });
-
-  const sidebarStyle = {
-    width: 280,
-    left: window.innerWidth < 640 && !ToggleMenu ? "-280px" : 0,
-  };
 
   return (
     <>
@@ -60,7 +61,7 @@ function Sidebar({ data, match, defaultUri }) {
           <div
             className="overlay"
             onClick={() => setToggleMenu((prev) => !prev)}
-          ></div>
+          />
         )}
         <div
           className="max-h-screen h-screen fixed bg-indigo-900 flex flex-col content-between z-10"
@@ -72,7 +73,7 @@ function Sidebar({ data, match, defaultUri }) {
                 className="relative flex items-center py-3 px-5 w-full text-left text-white mb-12"
                 to="/"
               >
-                <IconBack className="fill-white mr-2"></IconBack>
+                <IconBack className="fill-white mr-2" />
                 Back to Home
               </Link>
             </li>
